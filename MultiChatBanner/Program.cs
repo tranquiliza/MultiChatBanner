@@ -64,8 +64,7 @@ namespace MultiChatBanner
                     await Task.Delay(500);
 
                 var input = Console.ReadLine();
-                Console.Clear();
-
+                
                 if (string.Equals("continue", input, StringComparison.InvariantCultureIgnoreCase)
                     || string.Equals("c", input, StringComparison.InvariantCultureIgnoreCase))
                 {
