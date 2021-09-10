@@ -54,6 +54,7 @@ namespace MultiChatBanner
         private static async Task JoinChannels(TwitchIntegration twitchConnection)
         {
             Console.WriteLine("Please input names of channels you wish to ban for! (Press enter to submit)");
+            Console.WriteLine("Input 'continue' or 'c' to continue");
 
             var isInputtingChannels = true;
 
@@ -64,8 +65,6 @@ namespace MultiChatBanner
 
                 var input = Console.ReadLine();
                 Console.Clear();
-                Console.WriteLine("Input 'continue' or 'c' to continue");
-
 
                 if (string.Equals("continue", input, StringComparison.InvariantCultureIgnoreCase)
                     || string.Equals("c", input, StringComparison.InvariantCultureIgnoreCase))
