@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -58,13 +59,31 @@ namespace MultiChatBanner
 
             var isInputtingChannels = true;
 
+            const string filePath = "channels.txt";
+            if (File.Exists(filePath))
+            {
+                Console.WriteLine("channels.txt found, reading from file!");
+
+                var fileContent = await File.ReadAllLinesAsync(filePath);
+                foreach (var channelName in fileContent)
+                {
+                    twitchConnection.JoinChannel(channelName);
+                    Console.WriteLine($"Joined {channelName}");
+                }
+
+                Console.WriteLine("Finished Joining channels! GET READY!");
+                await Task.Delay(1000);
+
+                return;
+            }
+
             while (isInputtingChannels)
             {
                 if (!Console.KeyAvailable)
                     await Task.Delay(500);
 
                 var input = Console.ReadLine();
-                
+
                 if (string.Equals("continue", input, StringComparison.InvariantCultureIgnoreCase)
                     || string.Equals("c", input, StringComparison.InvariantCultureIgnoreCase))
                 {
